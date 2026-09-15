@@ -227,10 +227,13 @@ It provides stakeholders with a centralized view of **financial performance, loa
 * Data-Driven Decision Making
 
 ---
-
+Page 1: 
 <img width="1322" height="745" alt="image" src="https://github.com/user-attachments/assets/0650aa37-1abd-4fa3-9e20-6fb871356328" />
+Page 2:
 <img width="1327" height="747" alt="image" src="https://github.com/user-attachments/assets/242be3fe-8d54-4ee6-a707-be6a5dee046c" />
+Page 3:
 <img width="1327" height="737" alt="image" src="https://github.com/user-attachments/assets/1e41ce65-4147-454c-95d4-2ad7ef70359c" />
+Page 4:
 <img width="1325" height="747" alt="image" src="https://github.com/user-attachments/assets/f10868d5-3c31-4c33-be06-d9f59bc95e48" />
 
 
