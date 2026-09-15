@@ -175,14 +175,24 @@ Customer Financial Portfolio & Risk Analytics
 
 ---
 
-## 🧮 Important DAX Measure
+## 🧮 Key DAX Measures
 
--- Net Liquidity Inflow
-Net Liquidity Inflow = SUM('Customer Financial Profiles & P'[Deposits])
+The dashboard uses DAX measures to calculate important financial, liquidity, and loan performance metrics.
+
+### Net Liquidity Inflow
+
+```DAX
+Net Liquidity Inflow =
+SUM('Customer Financial Profiles & P'[Deposits])
 -
 SUM('Customer Financial Profiles & P'[Withdrawals])
+```
 
--- Loan Approval Rate
+Calculates the difference between total deposits and total withdrawals.
+
+### Loan Approval Rate
+
+```DAX
 Loan Approval Rate =
 DIVIDE(
     COUNTROWS(
@@ -194,51 +204,129 @@ DIVIDE(
     COUNTROWS('Customer Financial Profiles & P'),
     0
 )
+```
 
--- Approved Credit Volume
+Measures the percentage of customer loan applications that are approved.
+
+### Approved Credit Volume
+
+```DAX
 Approved Credit Volume =
 CALCULATE(
     SUM('Customer Financial Profiles & P'[Loan Amount]),
     'Customer Financial Profiles & P'[Loan Status] = "approved"
 )
+```
 
--- Pending Credit Volume
+Calculates the total loan amount for approved applications.
+
+### Pending Credit Volume
+
+```DAX
 Pending Credit Volume =
 CALCULATE(
     SUM('Customer Financial Profiles & P'[Loan Amount]),
     'Customer Financial Profiles & P'[Loan Status] = "pending"
 )
+```
 
--- Average Account Balance
+Calculates the total loan amount currently pending approval.
+
+### Average Account Balance
+
+```DAX
 Average Account Balance =
 AVERAGE('Customer Financial Profiles & P'[Account Balance])
+```
 
--- Average Income
+Calculates the average customer account balance.
+
+### Average Income
+
+```DAX
 Average Income =
 AVERAGE('Customer Financial Profiles & P'[Income Level])
+```
 
--- Average Loan Amount
-Avg Loan Amount =
+Calculates the average customer income level.
+
+### Average Loan Amount
+
+```DAX
+Average Loan Amount =
 AVERAGE('Customer Financial Profiles & P'[Loan Amount])
+```
 
--- Average Interest Rate
-Avg Interest Rate =
+Calculates the average loan amount across customers.
+
+### Average Interest Rate
+
+```DAX
+Average Interest Rate =
 AVERAGE('Customer Financial Profiles & P'[Interest Rate])
+```
 
--- Average Loan Term
+Calculates the average interest rate of loans.
+
+### Average Loan Term
+
+```DAX
 Average Loan Term =
 AVERAGE('Customer Financial Profiles & P'[Loan Term (Months)])
+```
 
--- Domestic Transfer
+Calculates the average loan repayment term in months.
+
+### Domestic Transfer
+
+```DAX
 Domestic Transfer =
 [Total Transfers] - [Total International Transfers]
+```
 
--- Liquidity Retention Ratio
+Calculates domestic transfers by excluding international transfers from total transfers.
+
+### Liquidity Retention Ratio
+
+```DAX
 Liquidity Retention Ratio =
 DIVIDE(
     [Net Liquidity Inflow],
     [Total Deposit]
 )
+```
+
+Measures the proportion of deposited funds retained as net liquidity.
+
+### Income Level Tier
+
+```DAX
+Income Level Tier =
+SWITCH(
+    TRUE(),
+    'Customer Financial Profiles & P'[Income Level] < 30000, "Low",
+    'Customer Financial Profiles & P'[Income Level] < 60000, "Medium",
+    'Customer Financial Profiles & P'[Income Level] < 1000000, "High",
+    "Very High"
+)
+```
+
+Segments customers into income-level categories for financial analysis.
+
+---
+
+## 📌 DAX Skills Demonstrated
+
+* `SUM()` – Financial volume calculations
+* `AVERAGE()` – Customer and loan performance analysis
+* `CALCULATE()` – Context-based financial calculations
+* `FILTER()` – Conditional data analysis
+* `COUNTROWS()` – Loan and customer counting
+* `DIVIDE()` – Ratio and percentage calculations
+* `SWITCH()` – Customer income segmentation
+* Dynamic DAX Measures – Interactive Power BI analysis
+   
+
 
 ## 🎨 Dashboard Design
 
