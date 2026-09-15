@@ -177,18 +177,68 @@ Customer Financial Portfolio & Risk Analytics
 
 ## 🧮 Important DAX Measure
 
-### Net Liquidity Inflow
-
-```DAX
-Net Liquidity Inflow =
-SUM('Customer Portfolio'[Deposits])
+-- Net Liquidity Inflow
+Net Liquidity Inflow = SUM('Customer Financial Profiles & P'[Deposits])
 -
-SUM('Customer Portfolio'[Withdrawals])
-```
+SUM('Customer Financial Profiles & P'[Withdrawals])
 
-This measure calculates the difference between total customer deposits and total withdrawals.
+-- Loan Approval Rate
+Loan Approval Rate =
+DIVIDE(
+    COUNTROWS(
+        FILTER(
+            'Customer Financial Profiles & P',
+            'Customer Financial Profiles & P'[Loan Status] = "approved"
+        )
+    ),
+    COUNTROWS('Customer Financial Profiles & P'),
+    0
+)
 
----
+-- Approved Credit Volume
+Approved Credit Volume =
+CALCULATE(
+    SUM('Customer Financial Profiles & P'[Loan Amount]),
+    'Customer Financial Profiles & P'[Loan Status] = "approved"
+)
+
+-- Pending Credit Volume
+Pending Credit Volume =
+CALCULATE(
+    SUM('Customer Financial Profiles & P'[Loan Amount]),
+    'Customer Financial Profiles & P'[Loan Status] = "pending"
+)
+
+-- Average Account Balance
+Average Account Balance =
+AVERAGE('Customer Financial Profiles & P'[Account Balance])
+
+-- Average Income
+Average Income =
+AVERAGE('Customer Financial Profiles & P'[Income Level])
+
+-- Average Loan Amount
+Avg Loan Amount =
+AVERAGE('Customer Financial Profiles & P'[Loan Amount])
+
+-- Average Interest Rate
+Avg Interest Rate =
+AVERAGE('Customer Financial Profiles & P'[Interest Rate])
+
+-- Average Loan Term
+Average Loan Term =
+AVERAGE('Customer Financial Profiles & P'[Loan Term (Months)])
+
+-- Domestic Transfer
+Domestic Transfer =
+[Total Transfers] - [Total International Transfers]
+
+-- Liquidity Retention Ratio
+Liquidity Retention Ratio =
+DIVIDE(
+    [Net Liquidity Inflow],
+    [Total Deposit]
+)
 
 ## 🎨 Dashboard Design
 
